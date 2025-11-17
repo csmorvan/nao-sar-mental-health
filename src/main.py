@@ -21,9 +21,8 @@ def main():
     motion.wakeUp()
     posture.goToPosture("StandInit", 0.5)
 
-    tts.say("Hi there! How can I help you today? The options available are: " \
-    "breathing exercises, a calm break, or affirmations")
-    time.sleep(1.0)
+    tts.say("Hi there! How can I help you today?You’re welcome to choose a breathing exercise, " \
+    "a calm break, or some words of affirmations — whichever you prefer.")
 
     # speech recognition
     user_choice = speech.listen_for_choice()
