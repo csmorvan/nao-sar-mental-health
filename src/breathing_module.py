@@ -2,7 +2,7 @@
 from naoqi import ALProxy
 import time
 
-ROBOT_IP = "127.0.0.1" # choregraphe simulation
+ROBOT_IP = "127.0.0.1" # choregraphe simulation ip
 PORT = 9559
 
 def main():
