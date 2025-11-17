@@ -4,17 +4,17 @@ BME 3720 • Introduction to Assistive Robotics • Final Project
 
 ---
 
-## Project Overview
+## 🔧 Project Overview
 
 This project explores the use of **Socially Assistive Robots (SARs)** as supportive tools for individuals experiencing stress or mental-health–related challenges.  
-Our system enables the NAO robot to provide short, calming interactions designed to help users regulate stress levels through:
+The system enables the NAO robot to provide short, calming interactions designed to help users regulate stress levels through:
 
 - Guided breathing exercises  
 - Positive affirmation delivery  
 - Calm break activities  
 - Simple supportive dialogue  
 
-The goal is to demonstrate how SARs can contribute to emotional support through **non-clinical, low-intensity interactions**.
+The main goal is to demonstrate how SARs can contribute to emotional support through **non-clinical, low-intensity interactions** using concepts learned during lecture.
 
 ---
 
@@ -44,7 +44,7 @@ The system is **event-driven** and currently includes:
 
   ---
 
-  ## 📎 Project Documentation
+  ## 📑 Project Documentation
 
 Additional project materials are included for clarity and transparency:
 
@@ -60,6 +60,3 @@ These files provide context for how the software modules relate to the broader S
 
 ---
 
-### 📊 Flowchart
-
-<img src="docs/flowchart.png" width="450">
