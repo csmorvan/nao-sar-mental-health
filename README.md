@@ -37,7 +37,7 @@ Users who require help with mental-health concerns should seek professional supp
 The system is **event-driven** and currently includes:
 
 - `main.py` – main controller that greets the user and routes to each module  
-- `breathing_module.py` – guided breathing exercise with gentle arm/head movements and LED cues (implemented)  
+- `breathing_module.py` – guided breathing exercise with gentle arm/head movements and LED cues  
 - `speech_recognition_controller.py` – speech recognition front-end to choose between modules  
 - `affirmation_module.py` – placeholder for teammate (positive affirmations)  
 - `break_module.py` – placeholder for teammate (calm break / music)
