@@ -56,7 +56,5 @@ Additional project materials are included for clarity and transparency:
   `docs/BME_Project_Presentation.pdf`  
   Slides summarizing our literature review, project rationale, design principles, ethical considerations, and intended SAR interaction approach.
 
-These files provide context for how the software modules relate to the broader Socially Assistive Robotics project presented in class.
-
 ---
 
