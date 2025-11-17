@@ -17,9 +17,8 @@ def main():
 
     tts.say("Let's take a few calming breaths together.")
 
-    # -----------------------------------------
+    
     #   3 FULL BREATHING CYCLES (4-7-8 breathing)
-    # -----------------------------------------
     for cycle in range(3):
 
         # ------------------------
@@ -64,9 +63,8 @@ def main():
         motion.closeHand("LHand")
         motion.closeHand("RHand")
 
-    # -----------------------------------------
-    #   IDLE CALMING POSE (STILL)
-    # -----------------------------------------
+    
+    #   IDLE POSE (STILL)
     tts.say("Let's stay here for a moment.")
 
     leds.fadeRGB("FaceLeds", 0xFFF2CC, 1.0)   # soft yellow calming tone to match
