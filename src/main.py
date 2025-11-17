@@ -6,7 +6,7 @@ import time
 import breathing_module  
 # import affirmation_module   
 # import break_module         
-# import speech_recognition_controller as speech
+import speech_recognition_controller as speech
 
 ROBOT_IP = "127.0.0.1" # choregraphe simulation ip
 PORT = 9559
@@ -21,8 +21,8 @@ def main():
     motion.wakeUp()
     posture.goToPosture("StandInit", 0.5)
 
-    tts.say("Hi there! How can I help you today? You may select from the following " \
-    "options: breathing exercises, a calm break, or affirmations")
+    tts.say("Hi there! How can I help you today? The options available are: " \
+    "breathing exercises, a calm break, or affirmations")
     time.sleep(1.0)
 
     # speech recognition
