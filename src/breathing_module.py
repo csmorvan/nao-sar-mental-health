@@ -16,14 +16,14 @@ def main():
     posture = ALProxy("ALRobotPosture", ROBOT_IP, PORT)
     leds    = ALProxy("ALLeds", ROBOT_IP, PORT)
 
-    # Prep robot safely
+    # wake the robot and move it into a stable standing pose
     motion.wakeUp()
     posture.goToPosture("StandInit", 0.5)
 
     tts.say("Let's take a few calming breaths together.")
 
     # -----------------------------------------
-    #   3 FULL BREATHING CYCLES
+    #   3 FULL BREATHING CYCLES (4-7-8 breathing)
     # -----------------------------------------
     for cycle in range(3):
 
@@ -31,11 +31,12 @@ def main():
         # INHALE (4 seconds)
         # ------------------------
         tts.say("Take a slow breath in...")
-        leds.fadeRGB("FaceLeds", 0xFFF5CC, 1.0)   # warm soft glow
+        leds.fadeRGB("FaceLeds", 0xFFF5CC, 1.0)   # warm glow during inhale for calming effect
 
+        # gentle upward shoulder movement + slight head lift to imitate breathing movement
         motion.angleInterpolation(
             ["LShoulderPitch", "RShoulderPitch", "HeadPitch"],
-            [[1.0], [1.0], [-0.10]],   # gentle rise & slight upward tilt
+            [[1.0], [1.0], [-0.10]],   
             [[4.0], [4.0], [4.0]],
             True
         )
@@ -47,7 +48,7 @@ def main():
         # HOLD (7 seconds)
         # ------------------------
         tts.say("Hold it there... nice and steady...")
-        leds.fadeRGB("FaceLeds", 0xFFFFCC, 1.0)
+        leds.fadeRGB("FaceLeds", 0xFFFFCC, 1.0) # slightly brighter
 
         time.sleep(7)
 
@@ -55,8 +56,9 @@ def main():
         # EXHALE (8 seconds)
         # ------------------------
         tts.say("And now slowly exhale... let your shoulders relax...")
-        leds.fadeRGB("FaceLeds", 0xFFEEDD, 1.5)
+        leds.fadeRGB("FaceLeds", 0xFFEEDD, 1.5) # warm fade-out
 
+        # shoulders lower + head returns slightly downward
         motion.angleInterpolation(
             ["LShoulderPitch", "RShoulderPitch", "HeadPitch"],
             [[1.40], [1.40], [0.15]],  # relaxed downward
@@ -74,6 +76,7 @@ def main():
 
     leds.fadeRGB("FaceLeds", 0xFFF2CC, 1.0)   # soft white/yellow calming tone
 
+    # simple relaxed pose to finish the exercise
     motion.angleInterpolation(
         ["HeadPitch", "HeadYaw",
          "LShoulderPitch", "RShoulderPitch",
@@ -93,13 +96,14 @@ def main():
     motion.openHand("LHand")
     motion.openHand("RHand")
 
-    time.sleep(2)
+    time.sleep(2) # small hold before resetting
 
     # -----------------------------------------
     #   FINISH
     # -----------------------------------------
     tts.say("Good job. I hope you feel a bit more at ease.")
 
+    # reset to default 
     posture.goToPosture("StandInit", 0.5)
     motion.rest()
 
