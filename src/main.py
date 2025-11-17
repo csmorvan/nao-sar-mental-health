@@ -31,7 +31,7 @@ def main():
 
     if user_choice == "none":
         tts.say("Hmm, I didn’t hear that clearly. Please try saying it again.")
-        user_choice = get_user_choice_backup()
+        return
 
     # -----------------------------
     # MODULE ROUTING
@@ -40,17 +40,18 @@ def main():
         tts.say("Okay, let's take a moment to breathe together.")
         breathing_module.main()
 
-    elif user_choice == "break":
-        tts.say("Okay, let me play something calming for you.")
-        break_module.main()  
+    # elif user_choice == "break":
+        # tts.say("Okay, let me play something calming for you.")
+        # break_module.main()  
 
-    elif user_choice == "affirmations":
-        tts.say("Okay, let me share some positive words of affirmations with you.")
-        affirmation_module.main()
+    # elif user_choice == "affirmations":
+        # tts.say("Okay, let me share some positive words of affirmations with you.")
+        # affirmation_module.main()
 
     else:
         tts.say("I'm glad you took a moment to relax today.")
-        tts.say("Remember, I'm here for short breaks, but not for therapy purposes.")
+        tts.say("If you need another short break later, I’ll be right here — but remember, " \
+        "I’m only for light stress-relief and not a substitute for therapy")
 
     
     # finish
