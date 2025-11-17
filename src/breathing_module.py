@@ -1,13 +1,8 @@
-"""
-Standalone breathing animation tester using the improved breathing module logic.
-Runs directly on the Virtual Robot (IP = 127.0.0.1).
-"""
 
 from naoqi import ALProxy
 import time
 
-# Virtual Robot address
-ROBOT_IP = "127.0.0.1"
+ROBOT_IP = "127.0.0.1" # choregraphe simulation
 PORT = 9559
 
 def main():
@@ -16,7 +11,7 @@ def main():
     posture = ALProxy("ALRobotPosture", ROBOT_IP, PORT)
     leds    = ALProxy("ALLeds", ROBOT_IP, PORT)
 
-    # wake the robot and move it into a stable standing pose
+    # wake robot & move into stable standing pose
     motion.wakeUp()
     posture.goToPosture("StandInit", 0.5)
 
@@ -28,7 +23,7 @@ def main():
     for cycle in range(3):
 
         # ------------------------
-        # INHALE (4 seconds)
+        # INHALE (4 secs)
         # ------------------------
         tts.say("Take a slow breath in...")
         leds.fadeRGB("FaceLeds", 0xFFF5CC, 1.0)   # warm glow during inhale for calming effect
@@ -74,7 +69,7 @@ def main():
     # -----------------------------------------
     tts.say("Let's stay here for a moment.")
 
-    leds.fadeRGB("FaceLeds", 0xFFF2CC, 1.0)   # soft white/yellow calming tone
+    leds.fadeRGB("FaceLeds", 0xFFF2CC, 1.0)   # soft yellow calming tone to match
 
     # simple relaxed pose to finish the exercise
     motion.angleInterpolation(
