@@ -18,7 +18,7 @@ motion   = ALProxy("ALMotion", ROBOT_IP, ROBOT_PORT)
 posture  = ALProxy("ALRobotPosture", ROBOT_IP, ROBOT_PORT)
 audio    = ALProxy("ALAudioPlayer", ROBOT_IP, ROBOT_PORT)
 
-def affirmations_module(tts):
+def main():
     """
     Speaks a randomly selected positive affirmation from a preset list.
     """
@@ -35,3 +35,6 @@ def affirmations_module(tts):
 
     tts.say("Here is a positive message for you.")
     tts.say(random.choice(affirmations))
+
+if __name__ == "__main__":
+    main()
