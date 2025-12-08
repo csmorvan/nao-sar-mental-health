@@ -52,9 +52,10 @@ Additional project materials are included for clarity and transparency:
   `docs/flowchart.png`  
   Visualizes the event-driven structure of the main interaction flow (speech recognition → module selection → user support activities).
 
-- **Team Presentation:**  
-  `docs/BME_Project_Presentation.pdf`  
+- **Team Presentations:**  
+  `docs/SAR Mental Health Lit Review.pdf`  
   Slides summarizing our literature review, project rationale, design principles, ethical considerations, and intended SAR interaction approach.
 
----
+  ``
+  Slides summarizing our project motivation, design process, technical development, final results, and overall system lifecycle.---
 
