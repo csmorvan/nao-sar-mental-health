@@ -1,98 +1,71 @@
-# -*- coding: utf-8 -*-
-# NAO Mental Health Assistive Robot Modules
-# Works with Python 2.7 and NAOqi 2.1+
-
 from naoqi import ALProxy
 import time
-import random
+import math
 
-# ---------------------------
-# Robot Connection Info
-# ---------------------------
-ROBOT_IP   = "127.0.0.1"   # change to NAO's IP
+# NOTE ON AUDIO TESTING IN CHOREGRAPHE TESTER:
+# ------------------------------------------------------------
+# Audio playback is intentionally disabled. The robot waits for
+# the song duration (2 min 20 sec) while performing calm motions.
+# Audio will be added later during video editing.
+# ------------------------------------------------------------
+
+ROBOT_IP   = "127.0.0.1"   # OK for Tester
 ROBOT_PORT = 9559
 
-tts      = ALProxy("ALTextToSpeech", ROBOT_IP, ROBOT_PORT)
-motion   = ALProxy("ALMotion", ROBOT_IP, ROBOT_PORT)
-posture  = ALProxy("ALRobotPosture", ROBOT_IP, ROBOT_PORT)
-audio    = ALProxy("ALAudioPlayer", ROBOT_IP, ROBOT_PORT)
+tts     = ALProxy("ALTextToSpeech", ROBOT_IP, ROBOT_PORT)
+motion  = ALProxy("ALMotion", ROBOT_IP, ROBOT_PORT)
+posture = ALProxy("ALRobotPosture", ROBOT_IP, ROBOT_PORT)
 
-# -----------------------------------------------------------
-# MODULE 2: POSITIVE AFFIRMATIONS
-# -----------------------------------------------------------
+try:
+    leds = ALProxy("ALLeds", ROBOT_IP, ROBOT_PORT)
+except:
+    leds = None
 
-def affirmations_module():
+
+def calm_motion_cycle(motion, leds=None):
     """
-    Selects and speaks a random positive affirmation.
+    One short calming motion cycle (~5 seconds)
     """
-    affirmations = [
-        "It's okay to rest when you need to.",
-        "You are doing the best you can today.",
-        "I am proud of how far you have come.",
-        "You deserve moments of calm and peace.",
-        "Your effort matters, even when you can't see it.",
-        "You are strong, capable, and learning every day.",
-        "Take things one step at a time. You're doing great."
-    ]
+    # Breathing-like arm motion
+    names  = ["LShoulderPitch", "RShoulderPitch"]
+    angles = [1.2, 1.2]   # relaxed
+    times  = [2.5, 2.5]
+    motion.angleInterpolation(names, angles, times, True)
 
-    message = random.choice(affirmations)
-    tts.say("Here is a positive message for you.")
-    tts.say(message)
+    angles = [1.4, 1.4]
+    motion.angleInterpolation(names, angles, times, True)
 
-# -----------------------------------------------------------
-# OPTIONAL: BREAK MODULE (if needed later)
-# -----------------------------------------------------------
+    # Small head nod
+    motion.angleInterpolation("HeadPitch", 0.15, 1.5, True)
+    motion.angleInterpolation("HeadPitch", 0.0, 1.5, True)
 
-def calm_break():
-    """
-    Plays a calm sound / music file.
-    """
+    # Soft LED pulse (optional)
+    if leds:
+        try:
+            leds.fadeRGB("FaceLeds", 0x3366FF, 1.5)  # soft blue
+            leds.fadeRGB("FaceLeds", 0x000000, 1.5)
+        except:
+            pass
+
+
+def break_module(tts, posture, audio=None, leds=None):
     tts.say("Sure. Let's take a calm break together.")
-    # Example: play a sound file from NAO robot storage
-    # audio.playFile("/home/nao/sounds/meditation.wav")
-    tts.say("Imagine a peaceful place while you listen for a moment.")
-    time.sleep(10)
-    tts.say("Whenever you're ready, we can continue.")
-
-# -----------------------------------------------------------
-# Example test run (remove when used in Choregraphe box)
-# -----------------------------------------------------------
-
-if __name__ == "__main__":
-    affirmations_module()
-def break_module():
-    """
-    Calming break: soft breathing LED pattern + music.
-    """
-
-    tts.say("Let's take a calm break. You deserve a moment to relax.")
+    tts.say("Find a comfortable position and take a moment to relax.")
 
     posture.goToPosture("SitRelax", 0.6)
 
-    # LED breathing pattern
-    try:
-        leds = ALProxy("ALLeds", ROBOT_IP, ROBOT_PORT)
-    except:
-        leds = None
+    # ----------------------------
+    # MUSIC DISABLED FOR TEST VIDEO
+    # ----------------------------
+    # audio.playFile("/home/nao/music/rose_water.wav")
 
-    # Start calm music
-    try:
-        # music_file = "/home/nao/music/calm_music.wav" -> for NAO
-        music_file = self.getPackagePath() + "/sounds/rose.mp3" # -> for Choregraphe
-        audio_id = audio.playFile(music_file)
-    except:
-        audio_id = None
+    SONG_DURATION = 140  # seconds (2 min 20 sec)
+    CYCLE_TIME    = 7    # approx duration of one calm cycle
 
-    # LED breathing cycles
-    if leds:
-        for i in range(3):
-            leds.fadeRGB("ChestLeds", 0x0033FF, 2.0)  # fade in blue (2s)
-            time.sleep(2)
-            leds.fadeRGB("ChestLeds", 0x000000, 2.0)  # fade out
-            time.sleep(2)
+    cycles = int(SONG_DURATION / CYCLE_TIME)
 
-    # Stop audio if still playing
-    if audio_id is not None:
-        audio.stop(audio_id)
+    for _ in range(cycles):
+        calm_motion_cycle(motion, leds)
 
-    tts.say("I hope you're feeling calmer now.")
+    tts.say("I hope you're feeling a bit more relaxed now.")
+    tts.say("Let me know if you'd like to continue.")
