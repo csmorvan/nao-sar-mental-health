@@ -1,71 +1,63 @@
 from naoqi import ALProxy
 import time
-import math
 
 # NOTE ON AUDIO TESTING IN CHOREGRAPHE TESTER:
 # ------------------------------------------------------------
-# Audio playback is intentionally disabled. The robot waits for
-# the song duration (2 min 20 sec) while performing calm motions.
-# Audio will be added later during video editing.
+# Choregraphe Tester / Simulated Robot does NOT emulate robot
+# speaker hardware. Audio playback via ALAudioPlayer runs
+# silently in Tester and can only be audibly verified on a
+# physical NAO/Pepper robot.
+#
+# For this test/demo, music playback is intentionally DISABLED
+# (commented out) because audio will be added later during
+# video editing. Instead, the robot waits for the song duration
+# (2 minutes 20 seconds) before speaking the final line.
 # ------------------------------------------------------------
 
-ROBOT_IP   = "127.0.0.1"   # OK for Tester
+# ---------------------------
+# Robot Connection Info
+# ---------------------------
+ROBOT_IP   = "127.0.0.1"   # In Tester you can keep this; real robot needs its IP
 ROBOT_PORT = 9559
 
-tts     = ALProxy("ALTextToSpeech", ROBOT_IP, ROBOT_PORT)
-motion  = ALProxy("ALMotion", ROBOT_IP, ROBOT_PORT)
-posture = ALProxy("ALRobotPosture", ROBOT_IP, ROBOT_PORT)
-
-try:
+def main():
+    tts      = ALProxy("ALTextToSpeech", ROBOT_IP, ROBOT_PORT)
+    motion   = ALProxy("ALMotion", ROBOT_IP, ROBOT_PORT)
+    posture  = ALProxy("ALRobotPosture", ROBOT_IP, ROBOT_PORT)
     leds = ALProxy("ALLeds", ROBOT_IP, ROBOT_PORT)
-except:
-    leds = None
+    # audio    = ALProxy("ALAudioPlayer", ROBOT_IP, ROBOT_PORT)
 
 
-def calm_motion_cycle(motion, leds=None):
-    """
-    One short calming motion cycle (~5 seconds)
-    """
-    # Breathing-like arm motion
-    names  = ["LShoulderPitch", "RShoulderPitch"]
-    angles = [1.2, 1.2]   # relaxed
-    times  = [2.5, 2.5]
-    motion.angleInterpolation(names, angles, times, True)
-
-    angles = [1.4, 1.4]
-    motion.angleInterpolation(names, angles, times, True)
-
-    # Small head nod
-    motion.angleInterpolation("HeadPitch", 0.15, 1.5, True)
-    motion.angleInterpolation("HeadPitch", 0.0, 1.5, True)
-
-    # Soft LED pulse (optional)
-    if leds:
-        try:
-            leds.fadeRGB("FaceLeds", 0x3366FF, 1.5)  # soft blue
-            leds.fadeRGB("FaceLeds", 0x000000, 1.5)
-        except:
-            pass
-
-
-def break_module(tts, posture, audio=None, leds=None):
     tts.say("Sure. Let's take a calm break together.")
     tts.say("Find a comfortable position and take a moment to relax.")
 
+    # Move NAO into a relaxed position
     posture.goToPosture("SitRelax", 0.6)
+
+    # Optional calming LED color (soft blue)
+    try:
+        if leds:
+            leds.fadeRGB("FaceLeds", 0x3366FF, 1.5)
+    except:
+        pass
 
     # ----------------------------
     # MUSIC DISABLED FOR TEST VIDEO
     # ----------------------------
-    # audio.playFile("/home/nao/music/rose_water.wav")
+    # music_file = "/home/nao/music/rose_water.wav"
+    # try:
+    #     audio_id = audio.playFile(music_file)
+    # except Exception as e:
+    #     print("Audio playback failed:", e)
 
-    SONG_DURATION = 140  # seconds (2 min 20 sec)
-    CYCLE_TIME    = 7    # approx duration of one calm cycle
-
-    cycles = int(SONG_DURATION / CYCLE_TIME)
-
-    for _ in range(cycles):
-        calm_motion_cycle(motion, leds)
+    # Wait for the song duration (2 min 20 sec = 140 sec)
+    time.sleep(140)
 
     tts.say("I hope you're feeling a bit more relaxed now.")
     tts.say("Let me know if you'd like to continue.")
+
+    posture.goToPosture("StandInit", 0.5)
+    motion.rest()
+
+if __name__ == "__main__":
+    main()
