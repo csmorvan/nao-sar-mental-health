@@ -1,6 +1,10 @@
-# class BreakModule:
-    #def onInput_start(self):
-        #self.onDone()
+
+# NOTE:
+# Audio files must be manually uploaded to the NAO robot.
+# Expected location on robot:
+#   /home/nao/music/
+# Upload command (when robot is accessible):
+#   scp audio/calm_music.mp3 nao@<ROBOT_IP>:/home/nao/music/
 
 
 from naoqi import ALProxy
@@ -41,15 +45,16 @@ def break_module(tts, posture, audio, leds=None):
 
     # Path to calming music file on the robot
     # Make sure you upload this file to your NAO at this location
-    music_path = "/home/nao/music/calm_music.wav"
+    music_path = "/home/nao/music/massobeats - rose water.mp3"
 
     # Try playing your calming audio file
     try:
         audio_id = audio.playFile(music_path)
         time.sleep(15)   # Let the music play (adjust duration if needed)
-    except:
+    except Exception as e:
+        print("Audio playback failed:", e)
         tts.say("I couldn't play the audio file, but we can still take a quiet moment together.")
-        time.sleep(10)
+        time.sleep(20)
 
     tts.say("I hope you're feeling a bit more relaxed now.")
     tts.say("Let me know if you'd like to continue.")

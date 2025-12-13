@@ -13,7 +13,7 @@ def listen_for_choice():
 
     asr.pause(True)
     asr.setLanguage("English")
-    asr.setVocabulary(vocab, False) # pull words from vocab list, exact matches only
+    asr.setVocabulary(vocab, False) # pull words from vocab list, exact matches ONLY
     asr.pause(False) # recogtion following settings set
 
     asr.subscribe("SAR_ASR")
