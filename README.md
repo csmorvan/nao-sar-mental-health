@@ -71,14 +71,14 @@ mental health modules implemented and tested in Choregraphe.
 > post-processing. Motion logic, timing, and behavior flow were validated in
 > Choregraphe using NAOqi.
 
-### 🫁 Breathing Module
+### Breathing Module
 📹 [Watch demo](videos/nao_breathing_demo.mp4)  
 Demonstrates guided breathing with slow arm and head motions designed to promote relaxation.
 
-### 🌿 Calm Break Module
-📹 [Watch demo](videos/nao_calm_break_demo.mp4)  
+### Calm Break Module
+📹 [Watch demo](videos/nao_break_demo.mp4)  
 Shows a seated `SitRelax` posture with subtle breathing motions and a timed calm interval.
 
-### 💬 Positive Affirmation Module
-📹 [Watch demo](videos/nao_positive_affirmation_demo.mp4)  
+### Positive Affirmation Module
+📹 [Watch demo](videos/nao_affirmation_demo.mp4)  
 Illustrates verbal encouragement and supportive interaction patterns for mental well-being.
