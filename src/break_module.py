@@ -45,7 +45,8 @@ def break_module(tts, posture, audio, leds=None):
 
     # Path to calming music file on the robot
     # Make sure you upload this file to your NAO at this location
-    music_path = "/home/nao/music/massobeats - rose water.mp3"
+    # music_path = "/home/nao/music/massobeats - rose water.mp3" -> NAO
+    music_file = self.getPackagePath() + "/sounds/rose.mp3" # -> for Choregraphe
 
     # Try playing your calming audio file
     try:
