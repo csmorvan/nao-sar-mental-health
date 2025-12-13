@@ -5,6 +5,8 @@
 #   /home/nao/music/
 # Upload command (when robot is accessible):
 #   scp audio/calm_music.mp3 nao@<ROBOT_IP>:/home/nao/music/
+# Audio playback via ALAudioPlayer runs silently in Tester
+# and can only be audibly verified on a physical robot.
 
 
 from naoqi import ALProxy
