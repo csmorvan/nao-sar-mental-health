@@ -50,7 +50,7 @@ def break_module(tts, posture, audio, leds=None):
 
     # Try playing your calming audio file
     try:
-        audio_id = audio.playFile(music_path)
+        audio_id = audio.playFile(music_file)
         time.sleep(15)   # Let the music play (adjust duration if needed)
     except Exception as e:
         print("Audio playback failed:", e)
