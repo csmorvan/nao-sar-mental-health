@@ -59,3 +59,26 @@ Additional project materials are included for clarity and transparency:
   ``
   Slides summarizing our project motivation, design process, technical development, final results, and overall system lifecycle.---
 
+---
+
+## 🎥 NAO Choregraphe Demonstration Videos
+
+The following videos demonstrate NAO-based Socially Assistive Robotics (SAR)
+mental health modules implemented and tested in Choregraphe.
+
+> **Note:** Due to Choregraphe Tester limitations, robot audio playback is not
+> natively supported. Background music and audio cues were added during
+> post-processing. Motion logic, timing, and behavior flow were validated in
+> Choregraphe using NAOqi.
+
+### 🫁 Breathing Module
+📹 [Watch demo](videos/nao_breathing_demo.mp4)  
+Demonstrates guided breathing with slow arm and head motions designed to promote relaxation.
+
+### 🌿 Calm Break Module
+📹 [Watch demo](videos/nao_calm_break_demo.mp4)  
+Shows a seated `SitRelax` posture with subtle breathing motions and a timed calm interval.
+
+### 💬 Positive Affirmation Module
+📹 [Watch demo](videos/nao_positive_affirmation_demo.mp4)  
+Illustrates verbal encouragement and supportive interaction patterns for mental well-being.
