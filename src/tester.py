@@ -77,7 +77,8 @@ def break_module():
 
     # Start calm music
     try:
-        music_file = "/home/nao/music/calm_music.wav"
+        # music_file = "/home/nao/music/calm_music.wav" -> for NAO
+        music_file = self.getPackagePath() + "/sounds/rose.mp3" # -> for Choregraphe
         audio_id = audio.playFile(music_file)
     except:
         audio_id = None
