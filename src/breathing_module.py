@@ -21,13 +21,12 @@ def main():
     
     # loop for 3 full breathing cycles (4-7-8 breathing)
     for cycle in range(3):
-
         
         # INHALE (4 secs)
         tts.say("Take a slow breath in...")
-        leds.fadeRGB("FaceLeds", 0xFFF5CC, 1.0)   # warm glow during inhale for calming effect
+        leds.fadeRGB("FaceLeds", 0xFFF5CC, 1.0)  # fades all face LEDs to warm glow during inhale for calming effect 
 
-        # gentle upward shoulder movement + slight head lift to imitate breathing movement
+        # gentle upward shoulder movement & slight head lift to mimic breathing 
         motion.angleInterpolation(
             ["LShoulderPitch", "RShoulderPitch", "HeadPitch"],
             [[1.0], [1.0], [-0.10]],   
@@ -38,19 +37,18 @@ def main():
         motion.openHand("LHand")
         motion.openHand("RHand")
 
-
         # HOLD (7 seconds)
         tts.say("Hold it there... nice and steady...")
-        leds.fadeRGB("FaceLeds", 0xFFFFCC, 1.0) # slightly brighter
+        leds.fadeRGB("FaceLeds", 0xFFFFCC, 1.0) #  increase brightness during the breath-holds
 
         time.sleep(7)
 
         
         # EXHALE (8 seconds)
         tts.say("And now slowly exhale... let your shoulders relax...")
-        leds.fadeRGB("FaceLeds", 0xFFEEDD, 1.5) # warm fade-out
+        leds.fadeRGB("FaceLeds", 0xFFEEDD, 1.5) # soft warm fade-out to release air/breathe out
 
-        # shoulders lower + head returns slightly downward to imitate exhale
+        # shoulders lower & head returns slightly downward to mimic exhale
         motion.angleInterpolation(
             ["LShoulderPitch", "RShoulderPitch", "HeadPitch"],
             [[1.40], [1.40], [0.15]],  # relaxed downward
@@ -65,7 +63,7 @@ def main():
     #   IDLE POSE (STILL)
     tts.say("Let's stay here for a moment.")
 
-    leds.fadeRGB("FaceLeds", 0xFFF2CC, 1.0)   # soft yellow calming tone to match
+    leds.fadeRGB("FaceLeds", 0xFFF2CC, 1.0)   # soft neutral yellow calming tone to match
 
     # simple relaxed pose to finish the exercise
 
