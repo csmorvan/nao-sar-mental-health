@@ -84,8 +84,8 @@ def main():
         if continue_choice != "yes":
             tts.say(
                 "I'm glad you decided to take this moment to relax. "
-                "If you need another short break later, I’ll be right here — but remember, "
-                "I’m only for light stress-relief and not a substitute for therapy or professional help."
+                "If you need another short break later, I'll be right here - but remember, "
+                "I'm only for light stress-relief and not a substitute for therapy or professional help."
             )
             break
 

@@ -7,34 +7,36 @@ PORT = 9559
 
 def _listen_with_vocab(vocab, listen_seconds=5, confidence_thresh=0.40,
                        robot_ip=ROBOT_IP, port=PORT):
+    
     """
-    Internal helper:
-    Listens for a word in `vocab` for `listen_seconds`.
-    Returns the recognized word if confident, else "none".
+    main idea:
+    1. listens for a word in `vocab` for `listen_seconds`.
+    2. returns the recognized word if confident, else doesn't and asks for user to repeat in main.
     """
+
     asr = ALProxy("ALSpeechRecognition", robot_ip, port)
     memory = ALProxy("ALMemory", robot_ip, port)
 
-    # Configure ASR
+    # configure ASR
     asr.pause(True)
     asr.setLanguage("English")
     asr.setVocabulary(vocab, False)  # exact matches only
     asr.pause(False)
 
-    # Listen
+    # listens for user
     asr.subscribe("SAR_ASR")
     time.sleep(listen_seconds)
 
-    # Read result
+    # read result
     data = memory.getData("WordRecognized")
 
-    # Cleanup
+    # cleanup
     try:
         asr.unsubscribe("SAR_ASR")
     except:
         pass
 
-    # Validate
+    # validation: confidence threshold 
     if not data or len(data) < 2:
         return "none"
 
@@ -48,17 +50,17 @@ def _listen_with_vocab(vocab, listen_seconds=5, confidence_thresh=0.40,
 
 def listen_for_module_choice(robot_ip=ROBOT_IP, port=PORT):
     """
-    Returns: "breathing" | "break" | "affirmations" | "none"
+    returns: "breathing" | "break" | "affirmations" | "none"
     """
-    vocab = ["breathing", "break", "affirmations"]
+    vocab = ["breathing", "break", "affirmations"] # module options
     print("Listening for module choice:", vocab)
     return _listen_with_vocab(vocab, listen_seconds=5, robot_ip=robot_ip, port=port)
 
 
 def listen_yes_no(robot_ip=ROBOT_IP, port=PORT):
     """
-    Returns: "yes" | "no" | "none"
+    returns: "yes" | "no" | "none"
     """
-    vocab = ["yes", "no"]
+    vocab = ["yes", "no"] # feedback loop
     print("Listening for yes/no:", vocab)
     return _listen_with_vocab(vocab, listen_seconds=4, robot_ip=robot_ip, port=port)
