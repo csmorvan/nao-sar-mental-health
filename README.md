@@ -49,5 +49,9 @@ Shows a seated `SitRelax` posture with subtle breathing motions and a timed calm
 ### **Positive Affirmation Module:** [Watch demo](videos/nao_affirmation_demo.mp4)  
 Illustrates verbal encouragement and supportive interaction patterns for mental well-being.
 
+### **Main Controller Module:** [Watch demo](videos/nao_main_controller_demo.mp4)  
+Demonstrates the NAO main controller, with text-to-speech explaining the intended speech recognition and module selection flow.
+
+---
 *Non-clinical system developed for educational purposes.*
 *Background music used during the Calm Break module: “Rose Water” by massobreats.*
