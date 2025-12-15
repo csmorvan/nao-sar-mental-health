@@ -37,7 +37,7 @@ def _listen_with_vocab(vocab, listen_seconds=5, confidence_thresh=0.40,
     except:
         pass
 
-    # validation: confidence threshold - if less than thresh % confident ask user to repeat
+    # validation: confidence threshold - if < thresh % confident ask user to repeat
     # themselves
     if not data or len(data) < 2:
         return "none"

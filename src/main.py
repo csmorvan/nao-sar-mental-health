@@ -13,10 +13,11 @@ PORT = 9559
 
 
 def main():
-    # proxies
+    # proxies needed for the modules
     tts     = ALProxy("ALTextToSpeech", ROBOT_IP, PORT)
     motion  = ALProxy("ALMotion", ROBOT_IP, PORT)
     posture = ALProxy("ALRobotPosture", ROBOT_IP, PORT)
+    audio   = ALProxy("ALAudioPlayer", ROBOT_IP, PORT)
 
     try:
         leds = ALProxy("ALLeds", ROBOT_IP, PORT)
@@ -34,7 +35,8 @@ def main():
 
         tts.say(
             "Would you like to do a breathing exercise, "
-            "take a calm break, or hear some positive affirmations?"
+            "take a calm break, or hear some positive affirmations? Please say" \
+            "breathing, break or affirmations." # last line to make sure user says right word in nao's vocab list
         )
 
         # speech recognition runs (MODULE CHOICE)
@@ -53,12 +55,8 @@ def main():
 
         elif user_choice == "break":
             tts.say("Okay. Let's take a calm break together.")
-            break_module.break_module(
-                break_module.tts,
-                break_module.posture,
-                break_module.audio,
-                leds=leds
-            )
+            break_module.break_module(tts, posture, audio, leds=leds) # needs actual args added here since module expects it  
+                                                                      # - other modules create their own and use def main 
 
         elif user_choice == "affirmations":
             tts.say("Okay, let me share some positive words of affirmations with you.")
@@ -84,7 +82,7 @@ def main():
             )
             break
 
-    # finish
+    # interaction closure - the end!
     posture.goToPosture("StandInit", 0.5)
     motion.rest()
 
