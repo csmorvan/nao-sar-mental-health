@@ -10,9 +10,6 @@ ROBOT_IP   = "127.0.0.1"   # change to NAO's IP
 ROBOT_PORT = 9559
 
 tts      = ALProxy("ALTextToSpeech", ROBOT_IP, ROBOT_PORT)
-motion   = ALProxy("ALMotion", ROBOT_IP, ROBOT_PORT)
-posture  = ALProxy("ALRobotPosture", ROBOT_IP, ROBOT_PORT)
-audio    = ALProxy("ALAudioPlayer", ROBOT_IP, ROBOT_PORT)
 
 def main():
     """
