@@ -3,7 +3,7 @@ import time
 
 # NOTE ON AUDIO TESTING IN CHOREGRAPHE TESTER:
 # ------------------------------------------------------------
-# Choregraphe Tester / Simulated Robot does NOT emulate robot
+# Choregraphe Tester/Simulated Robot does NOT emulate robot
 # speaker hardware. Audio playback via ALAudioPlayer runs
 # silently in Tester and can only be audibly verified on a
 # physical NAO/Pepper robot.
@@ -41,14 +41,15 @@ def main():
     except:
         pass
 
-    # ----------------------------
+    # ------------------------------
     # MUSIC DISABLED FOR TEST VIDEO
-    # ----------------------------
+    # ------------------------------
     # music_file = "/home/nao/music/rose_water.wav"
     # try:
     #     audio_id = audio.playFile(music_file)
     # except Exception as e:
     #     print("Audio playback failed:", e)
+
 
     # Wait for the song duration (2 min 20 sec = 140 sec)
     time.sleep(140)
