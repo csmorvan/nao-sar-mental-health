@@ -8,7 +8,8 @@ import affirmation_module
 import break_module         
 import speech_recognition_controller as speech
 
-ROBOT_IP = "127.0.0.1"  # choregraphe simulation ip
+# ROBOT_IP = "127.0.0.1"  # choregraphe simulation ip
+ROBOT_IP = "192.168.4.22"
 PORT = 9559
 
 

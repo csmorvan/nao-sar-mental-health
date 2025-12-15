@@ -2,7 +2,8 @@
 from naoqi import ALProxy
 import time
 
-ROBOT_IP = "127.0.0.1" # simulation ip
+# ROBOT_IP = "127.0.0.1" # simulation ip
+ROBOT_IP = "192.168.4.22"
 PORT = 9559
 
 def main():
