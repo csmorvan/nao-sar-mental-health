@@ -55,7 +55,7 @@ affirmation_module.py
 3. How to Run the Code
 --------------------------------------------------
 
-A. Individual Modules  (for Simulation)
+A. Individual Modules (for Simulation)
 
   python breathing_module.py
   python break_module_choregraphe_tester.py
@@ -78,7 +78,7 @@ The calm break module attempts to play an audio file from:
 Steps:
 1) Download the audio file
 2) Upload it to the robot using SCP:
-   scp "massobreats - rose water.wav" nao@<ROBOT_IP>:/home/nao/
+   scp "rose water.wav" nao@<ROBOT_IP>:/home/nao/
 3) Confirm the file path matches the one in break_module.py
 
 Audio source (copyright-free, per creator):
