@@ -6,7 +6,8 @@ import random
 # ---------------------------
 # Robot Connection Info
 # ---------------------------
-ROBOT_IP   = "127.0.0.1"   # change to NAO's IP
+# ROBOT_IP   = "127.0.0.1"   # change to NAO's IP
+ROBOT_IP = "192.168.4.22"
 ROBOT_PORT = 9559
 
 tts      = ALProxy("ALTextToSpeech", ROBOT_IP, ROBOT_PORT)
