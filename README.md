@@ -3,8 +3,8 @@
 BME 3720 • Introduction to Assistive Robotics • Final Project  
 
 A socially assistive robotics project using the NAO humanoid robot to deliver
-calming, non-clinical mental health interactions through guided breathing,
-affirmations, and relaxation behaviors.
+non-clinical, stress-relieving mental health support through guided breathing,
+positive affirmations, and relaxation behaviors.
 
 ---
 
@@ -22,19 +22,19 @@ Additional project materials are included for clarity and transparency:
 
 - **System Flowchart:**  
   `docs/flowchart.png`  
-  Visualizes the event-driven structure of the main interaction flow (speech recognition → module selection → user support activities).
+  Visualizes the event-driven interaction flow from speech recognition to module execution.
 
 - **Literature Review Presentation:**  
   `docs/SAR Mental Health Lit Review.pdf`  
-  Slides summarizing our literature review, project rationale, design principles, ethical considerations, and intended SAR interaction approach.
+  Slides summarizing relevant literature, project motivation, design principles, and ethical considerations.
 
  - **Final Project Presentation:**  
   `docs/Final Presentation_ Robotics Project .pdf`  
-  Summarizes system design, implementation, demonstration results, and future work.
+  Summarizes system design, implementation, demonstrations, and future work.
 
 - **Final Project Report:**  
   `docs/Robotics Final Project Report_ NAO-Based Mental Health Support System.pdf`  
-  Full written report detailing system architecture, algorithms, interaction design, ethical considerations, and evaluation.
+  Full written report detailing system architecture, interaction design, algorithms, ethics, and evaluation.
 
 ---
 
@@ -44,10 +44,10 @@ Additional project materials are included for clarity and transparency:
 Demonstrates guided breathing with slow arm and head motions designed to promote relaxation.
 
 ### **Calm Break Module:** [Watch demo](videos/nao_break_demo.mp4)  
-Shows a seated `SitRelax` posture with subtle breathing motions and a timed calm interval.
+Shows a seated `SitRelax` posture with a timed calm interval.
 
 ### **Positive Affirmation Module:** [Watch demo](videos/nao_affirmation_demo.mp4)  
-Illustrates verbal encouragement and supportive interaction patterns for mental well-being.
+Illustrates the delivery of short, supportive affirmations designed to encourage and reassure the user.
 
 ### **Main Controller Module:** [Watch demo](videos/nao_main_controller_demo.mp4)  
 Demonstrates the NAO main controller, with text-to-speech explaining the intended speech recognition and module selection flow.
