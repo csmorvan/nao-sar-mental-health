@@ -47,9 +47,9 @@ def _listen_with_vocab(vocab, listen_seconds=5, confidence_thresh=0.40,
     if confidence < confidence_thresh:
         return "none"
 
-    return word if word in vocab else "none"
+    return word if word in vocab else "none" # ensures exact matches only
 
-# 2 vocab lists to detect form - listens & waits for 5secs for user response
+# 2 vocab lists to detect from - listens & waits for 5secs for user response
 def listen_for_module_choice(robot_ip=ROBOT_IP, port=PORT):
     """
     returns: "breathing" | "break" | "affirmations" | "none"
