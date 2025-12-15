@@ -1,3 +1,4 @@
+
 from naoqi import ALProxy
 import time
 
@@ -28,9 +29,7 @@ def main():
 
     tts.say("Hi there! How can I help you today?")
 
-    # ---------------------
-    # FEEDBACK LOOP START
-    # ---------------------
+    # feedback loop
     while True:
 
         tts.say(
@@ -44,12 +43,10 @@ def main():
 
         # if nothing or unclear input
         if user_choice == "none":
-            tts.say("Hmm, I didn’t hear that clearly. Please try saying it again.")
+            tts.say("Hmm, I didn't hear that clearly. Please try saying it again.")
             continue
 
-        # -------------------
-        # MODULE ROUTING
-        # -------------------
+        # routing to the diff. modules -> 3 available paths
         if user_choice == "breathing":
             tts.say("Okay, let's take a moment to breathe together.")
             breathing_module.main()
@@ -70,17 +67,15 @@ def main():
         else:
             tts.say("That's okay. Let's take a moment to pause.")
 
-        # -----------------------
-        # FEEDBACK AFTER MODULE
-        # -----------------------
+        # post activity feedback loop
         tts.say("Good job. You're doing great taking care of yourself.")
         tts.say("Would you like to try another module? Please say yes or no.")
 
-        # speech recognition runs (YES / NO)
+        # speech recognition runs (YES/NO)
         continue_choice = speech.listen_yes_no(ROBOT_IP, PORT)
         print("Continue choice:", continue_choice)
 
-        # if user does NOT say yes, exit loop
+        # if user says no, exit loop & end interaction
         if continue_choice != "yes":
             tts.say(
                 "I'm glad you decided to take this moment to relax. "

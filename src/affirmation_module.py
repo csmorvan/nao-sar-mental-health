@@ -1,7 +1,3 @@
-#class AffirmationModule:
-    #def onInput_start(self):
-        #self.onDone()
-
 
 from naoqi import ALProxy
 import time

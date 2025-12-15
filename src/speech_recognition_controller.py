@@ -1,3 +1,4 @@
+
 from naoqi import ALProxy
 import time
 
@@ -27,16 +28,17 @@ def _listen_with_vocab(vocab, listen_seconds=5, confidence_thresh=0.40,
     asr.subscribe("SAR_ASR")
     time.sleep(listen_seconds)
 
-    # read result
+    # reads result
     data = memory.getData("WordRecognized")
 
-    # cleanup
+    # cleanup & end ASR
     try:
         asr.unsubscribe("SAR_ASR")
     except:
         pass
 
-    # validation: confidence threshold 
+    # validation: confidence threshold - if less than thresh % confident ask user to repeat
+    # themselves
     if not data or len(data) < 2:
         return "none"
 
@@ -47,7 +49,7 @@ def _listen_with_vocab(vocab, listen_seconds=5, confidence_thresh=0.40,
 
     return word if word in vocab else "none"
 
-
+# 2 vocab lists to detect form - listens & waits for 5secs for user response
 def listen_for_module_choice(robot_ip=ROBOT_IP, port=PORT):
     """
     returns: "breathing" | "break" | "affirmations" | "none"
@@ -61,6 +63,6 @@ def listen_yes_no(robot_ip=ROBOT_IP, port=PORT):
     """
     returns: "yes" | "no" | "none"
     """
-    vocab = ["yes", "no"] # feedback loop
+    vocab = ["yes", "no"] # feedback loop options
     print("Listening for yes/no:", vocab)
-    return _listen_with_vocab(vocab, listen_seconds=4, robot_ip=robot_ip, port=port)
+    return _listen_with_vocab(vocab, listen_seconds=5, robot_ip=robot_ip, port=port)

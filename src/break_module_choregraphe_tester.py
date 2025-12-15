@@ -17,7 +17,7 @@ import time
 # ---------------------------
 # Robot Connection Info
 # ---------------------------
-ROBOT_IP   = "127.0.0.1"   # In Tester you can keep this; real robot needs its IP
+ROBOT_IP   = "127.0.0.1"   
 ROBOT_PORT = 9559
 
 def main():
